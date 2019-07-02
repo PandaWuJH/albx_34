@@ -2,9 +2,10 @@
 const express=require("express");
 // 创建实例对象
 const app=express();
+const bodyParser=require("body-parser")
 //监听端口
-app.listen(3006,()=>{
-  console.log("http://127.0.0.1:3006");
+app.listen(3005,()=>{
+  console.log("http://127.0.0.1:3005");
 })
 // 引入router模块
 const router=require("./router/index.js")

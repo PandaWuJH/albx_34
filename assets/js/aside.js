@@ -1,6 +1,7 @@
+$(function(){
   // 获取当前页面完整路径
   var url=location.href;
-  var num1=url.lastIndexOf("/")+1;  
+  var num1=url.lastIndexOf("/")+1;    
   var num2=url.lastIndexOf("?");
   // console.log(num2);
   if(num2>-1){
@@ -19,3 +20,4 @@
     $("#menu-settings").addClass("in");
     $("#menu-settings").attr("aria-expanded",true);
    }
+})

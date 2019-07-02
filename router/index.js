@@ -3,7 +3,8 @@ const express=require("express");
 // 创建路由对象
 const router=express.Router();
 // 引入控制器模块,js文件互相引用要用相对路径
-const controller=require("../controller/pagesContorller.js")
+const controller=require("../controller/pagesContorller.js");
+const ArtController=require("../controller/ArtController.js");
 // 给router对象添加属性
 // 获取前台index页面
 router.get("/",controller.showIndexPage)
@@ -35,7 +36,8 @@ router.get("/admin/categories",controller.showADCategoriesPage)
  router.get("/admin/slides",controller.showADSlidesPage)
 // //获取后台users页面
  router.get("/admin/users",controller.showADUsersPage)
-
+//获取所有文章数据
+router.get("/getAllArticle",ArtController.getAllArticle)
 
 
 // 暴露router对象
