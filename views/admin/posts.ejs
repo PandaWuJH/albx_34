@@ -15,16 +15,16 @@
         <!-- show when multiple checked -->
         <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
         <form class="form-inline">
-          <select name="" class="form-control input-sm">
-            <!-- <option value="">所有分类</option>
-            <option value="">未分类</option> -->
+          <select name="" class="form-control input-sm selectCate">
+           
+            <!-- <option value="">未分类</option>  -->
           </select>
-          <select name="" class="form-control input-sm">
-            <option value="">所有状态</option>
-            <option value="">草稿</option>
-            <option value="">已发布</option>
+          <select name="" class="form-control input-sm selectStutas">
+            <option value="all">所有状态</option>
+            <option value="drafted">草稿</option>
+            <option value="published">已发布</option>
           </select>
-          <button class="btn btn-default btn-sm">筛选</button>
+          <button class="btn btn-default btn-sm" id="btn">筛选</button>
         </form>
         <ul class="pagination pagination-sm pull-right" style="float:right">
           <!-- <li><a href="#">上一页</a></li>
@@ -65,17 +65,23 @@
       <td>{{$value.name}}</td>
       <td class="text-center">{{$value.created}}</td>
      
-      <td class="text-center">已发布</td>
+      <td class="text-center">
        {{if $value.status=='published'}}
        已发布
        {{else}}
        草稿
        {{/if}}
+      </td>
       <td class="text-center">
         <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
-        <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+        <a href="javascript:;" class="btn btn-danger btn-xs btndel" data-id={{$value.pid}}>删除</a>
       </td>
     </tr>
+    {{/each}}
+  </script>
+  <script type="text/tmp" id="select">
+    {{each data}}
+    <option value="{{$value.id}}">{{$value.name}}</option>
     {{/each}}
   </script>
  <script src="/assets/js/posts.js"></script>

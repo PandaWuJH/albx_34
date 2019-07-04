@@ -7,6 +7,7 @@ const controller=require("../controller/pagesContorller.js");
 const ArtController=require("../controller/ArtController.js");
 const loginController=require("../controller/loginController.js")
 const userController=require("../controller/userController.js")
+const cateController=require("../controller/cateController.js")
 // 给router对象添加属性
 // 获取前台index页面
 router.get("/",controller.showIndexPage)
@@ -44,6 +45,9 @@ router.get("/getAllArticle",ArtController.getAllArticle)
 router.post("/login",loginController.login)
 //根据id获取对应用户信息
 router.get("/getInfoById",userController.getInfoById)
-
+// 获取所有分类数据
+router.get("/getCateList",cateController.getCateList)
+// 根据id删除文章
+router.get("/delArtById",userController.delArtById)
 // 暴露router对象
 module.exports=router;
