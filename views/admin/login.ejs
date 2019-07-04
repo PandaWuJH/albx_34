@@ -6,6 +6,12 @@
   <link rel="stylesheet" href="../assets/vendors/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
+<script src="/assets/vendors/jquery/jquery-1.12.4.js"></script>
+<script>
+// $(function(){
+  
+// })
+</script>
 <body>
   <div class="login">
     <form class="login-wrap">
@@ -16,14 +22,40 @@
       </div> -->
       <div class="form-group">
         <label for="email" class="sr-only">邮箱</label>
-        <input id="email" type="email" class="form-control" placeholder="邮箱" autofocus>
+        <input id="email" type="email" class="form-control" placeholder="邮箱" name="email" autofocus>
       </div>
       <div class="form-group">
         <label for="password" class="sr-only">密码</label>
-        <input id="password" type="password" class="form-control" placeholder="密码">
+        <input id="password" type="password" class="form-control" placeholder="密码" name="password">
       </div>
-      <a class="btn btn-primary btn-block" href="index.html">登 录</a>
+      <input type="submit" id="btn" class="btn btn-primary btn-block" value="登录"></input>
+      <div id="failLogin" style="height: 30px;line-height:30px;position:absolute;left:72px;bottom:0px;background-color: crimson;color: white;border-radius:5px;padding: 0 10px;display:none;">
+        用户名或者密码错误，请重新输入
+      </div>
     </form>
   </div>
+
 </body>
+
+<script>
+ $(".login-wrap").on("submit",function(event){
+    event.preventDefault();
+    $.ajax({
+      type:"post",
+      url:"/login",
+      data:$(".login-wrap").serialize(),
+      dataType:"json", 
+      success:function (res) {
+        if(res.code==000){
+          let id=res.data.id;
+            location.href='/admin/index?id='+id;
+            console.log(123);
+        }else if(res.code==111){
+            $("#failLogin").fadeIn(1000).delay(2000).fadeOut(1000)
+        }
+      
+      }
+    })
+  })
+</script>
 </html>

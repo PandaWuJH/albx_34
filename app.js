@@ -3,6 +3,7 @@ const express=require("express");
 // 创建实例对象
 const app=express();
 const bodyParser=require("body-parser")
+app.use(bodyParser.urlencoded({ extended: false })) ;
 //监听端口
 app.listen(3005,()=>{
   console.log("http://127.0.0.1:3005");
@@ -20,3 +21,4 @@ app.set("view engine","ejs");
 app.set("views","./views");
 // 使用中间件在当前应用上挂载路由配置
 app.use(router);
+

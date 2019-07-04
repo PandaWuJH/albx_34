@@ -7,23 +7,55 @@ const conn = mysql.createConnection({
   password: 'root',
   database: 'baixiu'
 });
+
 // 准备sql语句
 module.exports = {
+  // 获取所有文章信息
   getAllArticle(get, callback) {
     var str = `
     select posts.id,posts.slug,posts.title,posts.created,posts.status,users.nickname,users.id,categories.id,categories.name
     from posts
     inner join users on users.id=posts.user_id
     inner join categories on categories.id=category_id
-    limit ${(get.pageNum-1)},${(get.pageSize)}
+    limit ${(get.pageNum-1)*(get.pageSize)},${(get.pageSize)}
     `
     conn.query(str, (err, results) => {
       if (err) {
         callback(err)
       } else {
-        callback(null, results)
+        //获取数据库posts表中的总记录数
+        var sql="select count(*) as cnt from posts";
+        conn.query(sql,(err1,data1)=>{
+          if (err1) {
+            callback(err1)
+          } else{
+            callback(null,{results:results,data1:data1[0].cnt})
+          }
+        })
       }
-
     })
-  }
-}
+  },
+  // 读取数据库用户信息
+  login(user,callback){
+    var sql="SELECT email,password,id from users";
+    conn.query(sql,(err,results)=>{
+      if(err){
+        callback(err)
+      }else{
+        callback(null,results)
+      }
+    })
+  },
+
+  //根据id获取对应用户信息
+//   getInfoById(id,callback){
+//     var sql="select * from users where id=?";
+//     conn.query(sql,[id],(err,results)=>{
+//       if(err){
+//         callback(err)
+//       }else{
+//         callback(null,results)
+//       }
+//     })
+//   }
+ }

@@ -10,8 +10,9 @@ module.exports={
         msg:"获取失败"
       })   
       for(var i=0;i<results.length;i++){
-        results[i].created=moment(results[i].created).format("YYYY MM DD-HH:mm:ss ")
+        results[i].created=moment(results[i].created).format("YYYY-MM-DD HH:mm:ss ")
       }
+      console.log(results);
           res.json({
       code:0,
       msg:"获取成功",
