@@ -62,5 +62,10 @@ module.exports={
   showADUsersPage(req,res){
     res.render("admin/users.ejs")
   },
-
+  geta(req,res){
+    res.render("admin/a.ejs")
+  },
+  getDefault(req,res){
+    res.render("admin/default.ejs")
+  },
 }

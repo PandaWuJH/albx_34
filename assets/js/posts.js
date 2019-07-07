@@ -55,7 +55,8 @@ $(function(){
   })
   // 筛选功能，为按钮添加点击事件
   $("#btn").on("click",function(evevt){
-    console.log(123);
+    if(window.confirm("是否删除?")){
+       console.log(123);
     // 阻止默认刷新行为
     var query={};
     event.preventDefault();
@@ -67,6 +68,8 @@ $(function(){
         console.log(query);
       }
       init(query);
+    }
+   
   })
   // 根据id删除文章
   $("tbody").on("click",".btndel",function(){
@@ -79,9 +82,10 @@ $(function(){
       data:{
         id:id
       },
-      function (res) {
-        
+      function (res) {      
       }
     })
   })
+
+
 })

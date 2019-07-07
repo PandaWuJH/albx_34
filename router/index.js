@@ -49,5 +49,7 @@ router.get("/getInfoById",userController.getInfoById)
 router.get("/getCateList",cateController.getCateList)
 // 根据id删除文章
 router.get("/delArtById",userController.delArtById)
+// 上传文件接口
+router.post("/uploadFile",userController.uploadFile)
 // 暴露router对象
 module.exports=router;

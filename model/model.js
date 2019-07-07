@@ -42,8 +42,7 @@ module.exports = {
           if (err1) {
             callback(err1)
           } 
-          else{
-            
+          else{        
             callback(null,{results:results,data1:data1[0].cnt})
           }
         })
@@ -51,8 +50,8 @@ module.exports = {
     })
   },
   // 读取数据库用户信息
-  login(user,callback){
-    var sql="SELECT email,password,id from users";
+  login(email,callback){
+    var sql=`SELECT * from users where users.email="${email}"`;
     conn.query(sql,(err,results)=>{
       if(err){
         callback(err)
