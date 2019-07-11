@@ -25,6 +25,7 @@ $(function(){
       success:function (res) {
         if(res.code==0){    
             console.log("验证通过");
+             location.href="/admin/index"
         }else if(res.code==1){
           $("#loginErr").text("用户名不存在").show();
           $(".login").hide();

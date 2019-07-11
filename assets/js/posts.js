@@ -55,8 +55,7 @@ $(function(){
   })
   // 筛选功能，为按钮添加点击事件
   $("#btn").on("click",function(evevt){
-    if(window.confirm("是否删除?")){
-       console.log(123);
+    
     // 阻止默认刷新行为
     var query={};
     event.preventDefault();
@@ -68,13 +67,11 @@ $(function(){
         console.log(query);
       }
       init(query);
-    }
-   
   })
   // 根据id删除文章
   $("tbody").on("click",".btndel",function(){
     var id=$(this).data("id");
-    alert(id)
+    if(window.confirm("是否删除?")){
     $.ajax({
       type:"get",
       url:"/delArtById",
@@ -82,10 +79,10 @@ $(function(){
       data:{
         id:id
       },
-      function (res) {      
+      success:function(res){
+        location.href="/admin/posts"
       }
     })
+  }
   })
-
-
 })

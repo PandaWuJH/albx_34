@@ -82,6 +82,28 @@ module.exports = {
         callback(null)
       }
     })
+  },
+  //添加文章
+  addArc(obj,callback){
+    var sql="insert into posts set ?";
+    conn.query(sql,[obj],(err,results)=>{
+      if(err){
+        callback(err)
+      }else{
+        callback(null)
+      }
+    })
+  },
+  // 根据id获取对应文章
+  getArcById(id,callback){
+    var sql="select * from posts where id="+id;
+    conn.query(sql,(err,results)=>{
+      if(err){
+        callback(err)
+      }else{
+        callback(null,results[0])
+      }
+    })
   }
   //根据id获取对应用户信息
 //   getInfoById(id,callback){

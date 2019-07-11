@@ -51,5 +51,9 @@ router.get("/getCateList",cateController.getCateList)
 router.get("/delArtById",userController.delArtById)
 // 上传文件接口
 router.post("/uploadFile",userController.uploadFile)
+//新增文章接口
+router.post("/addArc",userController.addArc)
+// 根据id查找对应文章
+router.get("/getArcById",userController.getArcById)
 // 暴露router对象
 module.exports=router;

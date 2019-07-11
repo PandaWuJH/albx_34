@@ -1,8 +1,10 @@
 const model = require("../model/model.js")
+const session=require("express-session")
 // const querysting=require("querysting")
 module.exports = {
 
   login(req, res) {
+     
     var email = req.body.email;
     var pwd = req.body.password;
     // { email: '54266828@qq.com', password: '123' }
@@ -21,15 +23,23 @@ module.exports = {
       else {
         // 判断为有数据时
         if (results[0]) {
+            // res.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' });
           if (pwd == results[0].password) {
-            res.writeHead(200,{
-              // 将登录成功时的状态写入cookie
-              "set-cookie":"islogin=true"
-            })
+            console.log(results[0]);
+            // res.writeHead(200,{
+            //   // 将登录成功时的状态写入cookie
+            //   "set-cookie":"islogin=true"
+            // })
+            req.session.islogin="true";
+            req.session.current=results[0];
             res.end(JSON.stringify({
               code: 0,
-              msg: '验证通过'
-            }))
+              msg: "验证通过"
+            })) 
+            // res.json({
+            //   code: 0,
+            //    msg: "验证通过"
+            // })
           } else {
             res.json({
               code: 2,
